@@ -11,11 +11,18 @@ import {
 } from 'react-native';
 
 function AppPro(): JSX.Element {
-    const isDarkMode = useColorScheme() === "dark"
+    const colorScheme = useColorScheme();
+    const isDarkMode = useColorScheme() === "dark";
+
+    const containerStyle = {
+        ...styles.container,
+        backgroundColor: isDarkMode ? '#000000' : '#FFFFFF'
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <Text style={isDarkMode ? styles.whiteText : styles.darkText}>Namaste Duniya</Text>
+            <View style={containerStyle}>
+                <Text style={isDarkMode ? styles.whiteText : styles.darkText}>Namaste Duniya in "{colorScheme}"" theme.</Text>
             </View>
         </SafeAreaView>
     );
@@ -24,7 +31,7 @@ function AppPro(): JSX.Element {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center'
     },
     whiteText: {
